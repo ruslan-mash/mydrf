@@ -14,7 +14,7 @@ class UserView(viewsets.ModelViewSet):
     serializer_class = serializers.FullDataSerializer
 
 
-    @action(detail=True, methods=['GET'])
+    @action(detail=True, methods=['GET']) # вызов http://127.0.0.1:8000/api/users/{pk}/retrieve_by_id
     def retrieve_by_id(self, request, pk=None):
         queryset = models.UserProfile.objects.get(pk=pk)
         serializer = serializers.UserSerializer(queryset)
