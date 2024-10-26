@@ -38,29 +38,8 @@ class FullDataSerializer(serializers.Serializer):
             support.user_profile.add(result)
         return support
 
+    def to_representation(self, instance):
+        return {}
 
 
-#
-# class UserViewRetrieveSerializer(serializers.ModelSerializer):
-#
-#
-# def list(self, validated_data):
-#     profile_data = validated_data.get("data")
-#     support_data = validated_data.get("support")
-#     support = models.UserSupport.objects.get(**support_data)
-#
-#     for i in profile_data:
-#         result = models.UserProfile.objects.get(**i)
-#         support.user_profile.add(result)
-#     return support
-#
-# class Meta:
-#     model = models.UserSupport
-#     fields = "__all__"
 
-# class UserViewRetrieveSerializer(serializers.ModelSerializer):
-#     user_profile = serializers.PrimaryKeyRelatedField(many=True, queryset=models.UserProfile.objects.all())
-#
-#     class Meta:
-#         model = models.UserSupport
-#         fields = ('url', 'text', 'user_profile')

@@ -13,7 +13,6 @@ class UserView(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = serializers.FullDataSerializer
 
-    # serializer_classes = {"retrieve": serializers.UserViewRetrieveSerializer}
 
     @action(detail=True, methods=['GET'])
     def retrieve_by_id(self, request, pk=None):
@@ -21,9 +20,4 @@ class UserView(viewsets.ModelViewSet):
         serializer = serializers.UserSerializer(queryset)
         return Response(serializer.data)
 
-    # def get_queryset(self):
-    #     if self.action == "retrieve":
-    #         self.get_serializer()
-    #
-    #         serializer = serializers.UserViewRetrieveSerializer(pk=self.kwargs.get("pk"))
-    #     return self.queryset.filter(id=self.kwargs.get("pk"))
+
