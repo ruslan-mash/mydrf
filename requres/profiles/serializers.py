@@ -18,10 +18,10 @@ class UserSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(label="first_name", max_length=500)
     last_name = serializers.CharField(label="last_name", max_length=500)
     avatar = serializers.URLField(label="avatar", max_length=200)
-
+    user_supports = SupportSerializer(many=True, read_only=True)
     class Meta:
         model = models.UserProfile
-        fields = ("id", "email", "first_name", "last_name", "avatar")
+        fields = ("id", "email", "first_name", "last_name", "avatar", "user_supports")
 
 
 class FullDataSerializer(serializers.Serializer):
@@ -38,13 +38,29 @@ class FullDataSerializer(serializers.Serializer):
             support.user_profile.add(result)
         return support
 
-    def to_representation(self, instance):
-        return {}
 
 
-class UserViewRetrieveSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.UserSupport
-        fields = "__all__"
+#
+# class UserViewRetrieveSerializer(serializers.ModelSerializer):
+#
+#
+# def list(self, validated_data):
+#     profile_data = validated_data.get("data")
+#     support_data = validated_data.get("support")
+#     support = models.UserSupport.objects.get(**support_data)
+#
+#     for i in profile_data:
+#         result = models.UserProfile.objects.get(**i)
+#         support.user_profile.add(result)
+#     return support
+#
+# class Meta:
+#     model = models.UserSupport
+#     fields = "__all__"
 
-
+# class UserViewRetrieveSerializer(serializers.ModelSerializer):
+#     user_profile = serializers.PrimaryKeyRelatedField(many=True, queryset=models.UserProfile.objects.all())
+#
+#     class Meta:
+#         model = models.UserSupport
+#         fields = ('url', 'text', 'user_profile')
