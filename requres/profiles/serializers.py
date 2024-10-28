@@ -40,14 +40,16 @@ class FullDataSerializer(serializers.Serializer):
 
     def to_representation(self, instance):
         serializer = []
+
         for i in instance.user_profile.all():
             serializer.append(UserSerializer(i).data)
-        return {"profile_data":serializer}
+        return {"profile_data": serializer,
+                "support": {"url": instance.url,
+                            "text": instance.text}}
 
-
-class UserViewRetriveSerializer(serializers.ModelSerializer):
-    user_profile = UserSerializer(many=True)
-
-    class Meta:
-        model = models.UserSupport
-        fields = ("url", "text", "user_profile",)
+# class UserViewRetriveSerializer(serializers.ModelSerializer):
+#     user_profile = UserSerializer(many=True)
+#
+#     class Meta:
+#         model = models.UserSupport
+#         fields = ("url", "text", "user_profile",)
