@@ -9,15 +9,15 @@ from . import serializers, models
 
 
 class UserView(viewsets.ModelViewSet):
-    queryset = models.UserProfile.objects.all()
+    queryset = models.UserSupport.objects.all()
     permission_classes = [AllowAny]
     serializer_class = serializers.FullDataSerializer
 
 
-class RetrieveView(viewsets.ModelViewSet):
-    queryset = models.UserSupport.objects
-    permission_classes = [AllowAny]
-    serializer_class = serializers.UserViewRetriveSerializer
+# class RetrieveView(viewsets.ModelViewSet):
+#     queryset = models.UserSupport.objects
+#     permission_classes = [AllowAny]
+#     serializer_class = serializers.UserViewRetriveSerializer
 
 
 

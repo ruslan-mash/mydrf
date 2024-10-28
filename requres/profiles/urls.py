@@ -4,7 +4,6 @@ from . import views
 
 router = routers.SimpleRouter()
 router.register("users", views.UserView)
-router.register("ret", views.RetrieveView, basename="ret")
 
 
 
