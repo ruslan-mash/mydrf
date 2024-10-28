@@ -41,15 +41,11 @@ class FullDataSerializer(serializers.Serializer):
     def to_representation(self, instance):
         return {}
 
+
+
 class UserViewRetriveSerializer(serializers.ModelSerializer):
     user_profile = UserSerializer(many=True)
 
     class Meta:
         model = models.UserSupport
         fields = ("url", "text", "user_profile",)
-
-
-
-
-
-
