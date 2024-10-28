@@ -20,6 +20,11 @@ class UserView(viewsets.ModelViewSet):
     #     serializer = serializers.UserSerializer(queryset)
     #     return Response(serializer.data)
 
+class RetrieveView(viewsets.ModelViewSet):
+    queryset = models.UserSupport.objects
+    permission_classes = [AllowAny]
+    serializer_class = serializers.UserViewRetriveSerializer
+
 
 
 

@@ -42,6 +42,14 @@ class FullDataSerializer(serializers.Serializer):
         return {}
 
 class UserViewRetriveSerializer(serializers.ModelSerializer):
-    user_profile = serializers.SerializerMethodField
+    user_profile = UserSerializer(many=True)
+
+    class Meta:
+        model = models.UserSupport
+        fields = ("url", "text", "user_profile",)
+
+
+
+
 
 
