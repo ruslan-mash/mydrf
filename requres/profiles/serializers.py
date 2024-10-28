@@ -41,8 +41,7 @@ class FullDataSerializer(serializers.Serializer):
     def to_representation(self, instance):
         return {}
 
-    #test
-    #test2
-
+class UserViewRetriveSerializer(serializers.ModelSerializer):
+    user_profile = serializers.SerializerMethodField
 
 
