@@ -18,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(label="first_name", max_length=500)
     last_name = serializers.CharField(label="last_name", max_length=500)
     avatar = serializers.URLField(label="avatar", max_length=200)
+
     class Meta:
         model = models.UserProfile
         fields = ("id", "email", "first_name", "last_name", "avatar",)
@@ -38,9 +39,10 @@ class FullDataSerializer(serializers.Serializer):
         return support
 
     def to_representation(self, instance):
-        print(UserSerializer)
-        return instance.user_profile.all()
-
+        serializer = []
+        for i in instance.user_profile.all():
+            serializer.append(UserSerializer(i).data)
+        return {"profile_data":serializer}
 
 
 class UserViewRetriveSerializer(serializers.ModelSerializer):
