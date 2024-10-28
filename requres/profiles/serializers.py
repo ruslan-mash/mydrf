@@ -45,7 +45,9 @@ class FullDataSerializer(serializers.Serializer):
             serializer.append(UserSerializer(i).data)
         return {"profile_data": serializer,
                 "support": {"url": instance.url,
-                            "text": instance.text}}
+                            "text": instance.text
+                            }
+                }
 
 # class UserViewRetriveSerializer(serializers.ModelSerializer):
 #     user_profile = UserSerializer(many=True)
